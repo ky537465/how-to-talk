@@ -9,7 +9,6 @@ ACTIONS = [{"color": action[0], "shape": action[1]} for action in itertools.prod
 ##### Define states
 ALL_STATES = [list(l) for l in itertools.combinations(ACTIONS, 3)]
 
-
 ##### Define rewards
 def generate_worlds_from_feature_values(features, possible_values):
     """Given lists of features and values, generate a dataframe with all possible feature-value combinations."""
@@ -22,6 +21,7 @@ def generate_worlds_from_feature_values(features, possible_values):
         else:
             worlds_list = [dict(**w, **{f: k}) for w in worlds_list for k in possible_values]
 
+    print(worlds_list)
     return worlds_list
 
 
@@ -35,14 +35,12 @@ DESCRIPTIONS = [{"type": "description", "feature": utt[0], "value": utt[1]}
 EXP_DESCRIPTIONS = [{"type": "description", "feature": utt[0], "value": utt[1]}
                     for utt in itertools.product(["green", "circle", "square", "blue"], [-2, -1, 1, 2])]
 
-
 def generateInstructions(state):
     return [dict(action, **{"type": "instruction"}) for action in state]
 
 
 def action_rewards_from_beliefs(action, beliefs):
     return beliefs[action["color"]] + beliefs[action["shape"]]
-
 
 def utt_to_string(utt):
     if utt["type"] == "instruction":
