@@ -1,7 +1,0 @@
-{
-  "name": "signaling-bandits-exp",
-  "version": "1.0.0",
-  "dependencies": {
-    "@stdlib/math": "^0.0.11"
-  }
-}
